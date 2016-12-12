@@ -1,0 +1,15 @@
+{
+  "name": "ddp-lambda-s3-policy",
+  "version": "1.0.0",
+  "description": "A webservice for generating an s3 policy for DDP",
+  "main": "index.js",
+  "dependencies": {
+    "s3-post-policy": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

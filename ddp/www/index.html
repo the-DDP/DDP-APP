@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="PartyRev">
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://*.amazonaws.com http://*.google.com https://*.gstatic.com https://*.googleapis.com https://scontent.xx.fbcdn.net https://static.xx.fbcdn.net 'unsafe-eval' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/angular-csp.css">
+        <title>Hello World</title>
+    </head>
+    <body ng-controller="GroundCtrl as groundCtrl">
+        <div id='fb-root'></div>
+        <div id="map">
+        </div>
+
+        <!-- Center map control -->
+        <svg class="centerMap" ng-click="groundCtrl.centerMap()" ng-show="groundCtrl.showMapControls" width="40" height="40" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" ng-cloak>
+            <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+            <g>
+                <line stroke="#ffaa56" id="svg_4" y2="37.000001" x2="39.000001" y1="3.999999" x1="1.999999" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="none"/>
+                <line stroke="#fcc088" id="svg_5" y2="5" x2="34.000001" y1="40" x1="5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="none"/>
+            </g>
+        </svg>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/ng-cordova.min.js"></script>
+		<script type="text/javascript" src="js/ng-cordova-oauth.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/module.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <!-- &callback=initMap -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=TODO" async defer></script>
+
+        <div class="loginButton"
+             ng-class="{'loginButton':groundCtrl.termsAccepted, 'loginButtonDisabled':!groundCtrl.termsAccepted}"
+             ng-click="groundCtrl.login()" ng-show="groundCtrl.showLogin">
+            <div class="loginText">party</div>
+        </div>
+        <div id="terms" ng-show="groundCtrl.showTerms">
+            <div id="termsCheckbox">
+                <input type="checkbox" ng-model="groundCtrl.termsAccepted" />
+            </div>
+            <div id="termsBlurb">
+                I have read and agree to the
+                <a href="https://s3url/terms.html">terms</a> and
+                <a href="https://s3url/privacy.html">privacy</a> policy
+            </div>
+        </div>
+        <div class="addPhotoBtn" ng-click="groundCtrl.addPhoto()" ng-show="groundCtrl.showAddPhoto" ng-cloak></div>
+        <div class="openChatBtn" ng-click="groundCtrl.openChat()" ng-show="groundCtrl.showOpenChatBtn" ng-cloak></div>
+        <div class="openAboutBtn" ng-click="groundCtrl.showAbout()" ng-show="groundCtrl.showAboutBtn" ng-cloak></div>
+        <div class="chatWindow" ng-show="groundCtrl.showChatWindow" ng-cloak>
+            <div id="chatLog"></div>
+            <input type='text' id="chatEntry" ng-model="groundCtrl.textInput" />
+            <div id="chatSendBtn" ng-click="groundCtrl.send()">go</div>
+        </div>
+        <div class="aboutWindow" ng-show="groundCtrl.showAboutWindow" ng-cloak>
+            <iframe src="https://s3url/manifesto.html" height="100%" width="100%"></iframe>
+        </div>
+
+    </body>
+</html>

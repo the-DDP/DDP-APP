@@ -1,0 +1,1 @@
+call adb install -r C:/ddp/ddp/platforms/android/build/outputs/apk/android-debug.apk

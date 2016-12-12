@@ -1,0 +1,452 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+html {
+    background: url(../img/bg2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+}
+
+#terms {
+    position:absolute;
+    width:100%;
+    top:90%;
+    text-align:center;
+    font-size:1.1em;
+}
+
+#termsCheckbox {
+    display:inline-block;
+    transform: scale(1.8);
+}
+#termsBlurb {
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    width:50%;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.4), 1px -1px 0 rgba(0,0,0,.4), -1px 1px 0 rgba(0,0,0,.4), 1px 1px 0 rgba(0,0,0,.4);
+}
+
+#terms a:link {
+    color: rgb(237, 218, 252);
+}
+
+#map {
+    width:100%;
+    height:90%;
+    position:absolute;
+}
+
+.loginButton {
+    width:60%;
+    height:12%;
+    font-size:3em;
+    border-radius:.25em;
+
+    background-color: rgba(57,176,253,.35);
+    top:75%;
+    left:20%;
+    position:absolute;
+    text-align:center;
+    border: 1px solid rgb(57,176,253);
+    text-shadow: -1px -1px 0 rgb(220, 253, 39), 1px -1px 0 rgb(220, 253, 39), -1px 1px 0 rgb(220, 253, 39), 1px 1px 0 rgb(220, 253, 39);
+    /*border:1px solid rgb(59,89,152);*/
+}
+
+.loginButton .loginText, .loginButtonDisabled .loginText {
+    animation-duration: .4s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform:scale(1)
+    }
+    to {
+        transform:scale(1.25)
+    }
+}
+.loginButtonDisabled {
+    width:60%;
+    height:12%;
+    font-size:3em;
+    border-radius:.25em;
+
+    background-color: rgba(252, 252, 252, 0.35);
+    top:75%;
+    left:20%;
+    position:absolute;
+    text-align:center;
+    color:#bfbfbf;
+    border: 1px solid rgb(252, 252, 252);
+    /*border:1px solid rgb(59,89,152);*/
+}
+
+.loginText {
+    margin:auto;
+    color:white;
+    margin-top:.5em;
+    font-weight:bold;
+    text-decoration: blink;
+    text-transform: uppercase;
+}
+
+.addPhotoBtn {
+    position:absolute;
+    bottom:1%;
+    height:8%;
+    width:24%;
+    left:7%;
+
+    background-image: url('../img/photo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    border-radius:1em;
+
+    animation-delay: 0s;
+    animation-duration: .4s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    /*
+    background-color:rgba(255,245,235,.3);
+    border:1px solid rgba(255,245,235,.3);
+    */
+}
+
+.openChatBtn {
+    position:absolute;
+    bottom:1%;
+    height:8%;
+    width:24%;
+    left:38%;
+    /*
+    border:1px solid #c4ffa5;
+    background-color:rgba(196,255,165,.3);
+    border-radius:.5em;
+    */
+
+    background-image: url('../img/chat.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    border-radius:1em;
+
+    animation-delay: 133ms;
+    animation-duration: .4s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+.openAboutBtn {
+    position:absolute;
+    bottom:1%;
+    height:8%;
+    width:24%;
+    left:69%;
+
+    /*border:1px solid #ffc8af;*/
+    /*background-color:rgba(255,200,175,.3);*/
+    /*border-radius:.5em;*/
+
+    background-image: url('../img/ghettoblaster.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    border-radius:1em;
+
+    animation-delay: 266ms;
+    animation-duration: .4s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+
+.chatWindow {
+    z-index: 100;
+    position:absolute;
+    width:100%;
+    height:90%;
+    /* border:1px solid white; */
+    background: #c4ffa5; /* Old browsers */
+    background: -moz-linear-gradient(top,  #c4ffa5 0%, #a1dbff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #c4ffa5 0%,#a1dbff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #c4ffa5 0%,#a1dbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c4ffa5', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
+}
+
+.aboutWindow {
+    z-index: 100;
+    position:absolute;
+    width:100%;
+    height:90%;
+    /* border:1px solid white; */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffc8af+0,a3ffd8+100 */
+    background: #ffc8af; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffc8af 0%, #a3ffd8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ffc8af 0%,#a3ffd8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ffc8af 0%,#a3ffd8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc8af', endColorstr='#a3ffd8',GradientType=0 ); /* IE6-9 */
+}
+
+#chatLog {
+    position:relative;
+    height:85%;
+    overflow-y:auto;
+    z-index:100;
+}
+
+#chatLog .line {
+    position:relative;
+    float:left;
+    clear:both;
+    margin-top:.33em;
+    padding-top:.33em;
+    border-top:1px solid rgba(0,0,0,.06);
+    padding-left:3.5em;
+}
+
+#chatLog .line .text {
+    position:relative;
+    float:left;
+    width:100%;
+    font-size:1.2em;
+}
+
+#chatLog .line .text .time {
+    display:inline;
+    font-size:.8em;
+    vertical-align: top;
+    color:darkslategray;
+}
+
+#chatLog .line .text .item {
+    display:inline;
+    vertical-align:top;
+    margin-left:.5em;
+    padding:.25em;
+    font-size:1.2em;
+    color: black;
+    /*    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+}
+
+#chatLog .line .profilePic {
+    position:relative;
+    float:left;
+    right:3.5em;
+    margin-left:-100%;
+
+    width:3.5em;
+    height:3.5em;
+
+}
+
+#chatLog .line .text .time {
+    display:inline;
+    font-size:.8em;
+    vertical-align: top;
+    color:darkslategray;
+}
+
+#chatLog .line .text .item {
+    display:inline;
+    vertical-align:top;
+    margin-left:.5em;
+    padding:.25em;
+    font-size:1.2em;
+    color: black;
+    /*    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+}
+
+#chatLog .line .profilePic IMG {
+    width:3em;
+    height:3em;
+    border:1px solid #93ecff;
+    margin:.25em;
+}
+
+
+#chatEntry {
+    position:absolute;
+    background-color:#E2FFD3;
+    font-size:2.5em;
+    border:1px solid #97C47F;
+    padding:1px;
+    width:79%;
+    left:3%;
+    bottom:2.5%;
+}
+
+#chatSendBtn {
+    position:absolute;
+    background-color:#89D3C1;
+    font-size:2.5em;
+    border:1px solid #78B9A9;
+    padding:1px;
+    width:12%;
+    left:85%;
+    bottom:2.5%;
+    color:white;
+    text-transform:none;
+    text-align:center;
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+.infoWindow IMG {
+    border-radius:4px;
+    border-color:rgba(0,0,0,.5);
+}
+.infoWindow A {
+    text-decoration: none;
+}
+
+.centerMap {
+    position:absolute;
+    bottom:16%;
+    left:5%;
+    z-index:10000;
+}
+
+.partyBeaconContent {
+    min-width:7em;
+    font-size:1.75em;
+    background-color: rgba(57,176,253,.25);
+}
+
+.partyBeaconJoinButton {
+    position:relative;
+    float:left;
+    text-align:center;
+    padding-top:.25em;
+    padding-bottom:.25em;
+    padding-left:1.5em;
+    padding-right:1.5em;
+
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    /*border:1px solid rgb(59,89,152);*/
+}
+
+.partyBeaconJoinButton .leaveParty {
+    margin-top:2em;
+}
+
+
+.partyBeaconJoinText {
+    white-space: nowrap;
+    color:rgb(57,176,253);
+    margin:auto;
+    text-align:center;
+    animation-duration: .4s;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
