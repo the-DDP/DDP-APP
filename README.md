@@ -1,4 +1,4 @@
-# Party Revolution
+# The DDP Party App
 
 - Utilizes AWS Lambda, DynamoDB, and S3.
 - Mobile front end written in Angular and Cordova
